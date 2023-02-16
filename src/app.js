@@ -11,12 +11,13 @@ const {
 const registerRouter = require("./routes/register.route");
 const loginRouter = require("./routes/login.route");
 const orderRouter = require("./routes/order.route");
+const { ALLOWED_ORIGINS } = require("./utils/config");
 
 const app = express();
 
 //middlewares
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors(ALLOWED_ORIGINS));
 app.use(express.json());
 app.use(cookieParser());
 
