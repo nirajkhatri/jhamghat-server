@@ -1,7 +1,7 @@
-const orders = require("./order.mongo");
+const orders = require('./order.mongo');
 
-async function placeOrder(data) {
-  return await orders.create(data);
+async function createNewOrder(data) {
+  return (await orders.create(data)) ?? false;
 }
 async function findOrders(email) {
   return await orders.find(email, {
@@ -10,6 +10,6 @@ async function findOrders(email) {
   });
 }
 module.exports = {
-  placeOrder,
   findOrders,
+  createNewOrder,
 };

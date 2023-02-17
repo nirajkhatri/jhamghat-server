@@ -1,14 +1,14 @@
-const { Router } = require("express");
+const { Router } = require('express');
 
-const RegisterController = require("../controllers/register.controller");
+const RegisterController = require('../controllers/register.controller');
 const {
   registerValidationMiddleware,
-} = require("../middleware/registrationMiddleware");
+} = require('../middleware/registrationMiddleware');
 
 const registerRouter = Router();
 
 registerRouter.post(
-  "/register",
+  '/register',
   registerValidationMiddleware,
   RegisterController.registerUser
 );

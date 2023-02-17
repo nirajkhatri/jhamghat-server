@@ -1,21 +1,21 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const http = require("http");
-const mongoose = require("mongoose");
+const http = require('http');
+const mongoose = require('mongoose');
 
-const app = require("./src/app");
-const { MONGO_URL } = require("./src/utils/config");
+const app = require('./src/app');
+const { MONGO_URL } = require('./src/config');
 
 const server = http.createServer(app);
 
 const PORT = process.env.PORT;
 
-mongoose.connection.once("open", () => {
-  console.log("Database connection success...");
+mongoose.connection.once('open', () => {
+  console.log('Database connection success...');
 });
 
-mongoose.connection.on("error", (error) => {
-  console.log("Database connection failed...");
+mongoose.connection.on('error', (error) => {
+  console.log('Database connection failed...');
 });
 
 async function startServer() {

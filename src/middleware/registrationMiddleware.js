@@ -1,16 +1,16 @@
-const UserModel = require("../models/user.model");
+const UserModel = require('../models/user.model');
 
 async function registerValidationMiddleware(req, res, next) {
   const userRegisterationData = req.body;
 
   const isAnyInputEmpty = Object.values(userRegisterationData).some(
-    (value) => value == null || value == ""
+    (value) => value == null || value == ''
   );
 
   if (isAnyInputEmpty) {
     return res.status(422).json({
-      status: "failed",
-      message: "Please check input values",
+      status: 'failed',
+      message: 'Please check input values',
     });
   }
 
@@ -18,14 +18,14 @@ async function registerValidationMiddleware(req, res, next) {
 
   if (password !== confirmPassword)
     return res.status(422).json({
-      message: "Confirm password doesnot matched",
+      message: 'Confirm password doesnot matched',
     });
 
   const userAlreadyExist = await UserModel.getUser({ email });
 
   if (userAlreadyExist) {
     return res.status(409).json({
-      message: "User already exist",
+      message: 'User already exist',
     });
   }
 
