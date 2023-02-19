@@ -1,11 +1,9 @@
-const registerRouter = require('./register.route');
-const loginRouter = require('./login.route');
-const refreshTokenRouter = require('./refresh.token.route');
 const orderRouter = require('./order.route');
+const emailRouter = require('./email.route');
+const authRouter = require('./auth.route');
 
 module.exports = {
-  registerRouter,
-  loginRouter,
-  refreshTokenRouter,
   orderRouter,
+  emailRouter,
+  authRouter,
 };

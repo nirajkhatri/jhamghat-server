@@ -1,4 +1,4 @@
-const UserModel = require('../models/user.model');
+const UserModel = require('../models/user/user.model');
 
 async function registerValidationMiddleware(req, res, next) {
   const userRegisterationData = req.body;

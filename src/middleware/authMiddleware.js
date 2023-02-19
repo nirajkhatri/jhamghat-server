@@ -7,7 +7,7 @@ async function authorizationMiddleware(req, res, next) {
 
   const token = req.cookies.access_token;
 
-  if (url === '/startsession' && token === undefined)
+  if (url === '/validate_session' && token === undefined)
     return res.sendStatus(202);
 
   if (!token) {

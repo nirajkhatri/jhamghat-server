@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
-const UserModel = require('../models/user.model');
-const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../config');
+const TokenModel = require('../models/token/token.model');
+
+const {
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+  EMAIL_VERIFICATION_SECRET,
+} = require('../config');
 
 function generateAccessToken(payload) {
   return jwt.sign(payload, ACCESS_TOKEN_SECRET, {
@@ -13,7 +18,7 @@ async function generateRefreshToken(payload) {
     expiresIn: '1d',
   });
 
-  const tokenSaved = await UserModel.createRefreshToken({
+  const tokenSaved = await TokenModel.createRefreshToken({
     email: payload.email,
     token: [refresh_token],
   });
@@ -22,4 +27,14 @@ async function generateRefreshToken(payload) {
 
   return refresh_token;
 }
-module.exports = { generateAccessToken, generateRefreshToken };
+
+function generateEmailVerificationToken(payload) {
+  return jwt.sign(payload, EMAIL_VERIFICATION_SECRET, {
+    expiresIn: '15m',
+  });
+}
+module.exports = {
+  generateAccessToken,
+  generateRefreshToken,
+  generateEmailVerificationToken,
+};

@@ -1,15 +1,4 @@
-const UserSchema = require("./user.mongo");
-const TokenSchema = require("./token.model");
-
-async function getUser(email) {
-  return await UserSchema.findOne(email, {
-    __v: 0,
-  });
-}
-
-async function createNewUser(data) {
-  return (await UserSchema.create(data)) ? true : false;
-}
+const TokenSchema = require('./token.mongo');
 
 async function createRefreshToken(data) {
   const { email, token } = data;
@@ -20,6 +9,7 @@ async function createRefreshToken(data) {
       $push: { token },
     },
     {
+      new: true,
       upsert: true,
     }
   );
@@ -42,8 +32,7 @@ async function verifyRefreshToken(data) {
 }
 
 module.exports = {
-  createNewUser,
-  getUser,
   createRefreshToken,
+  getRefreshToken,
   verifyRefreshToken,
 };
