@@ -1,6 +1,6 @@
 const path = require('path');
 const ejs = require('ejs');
-const { transporter } = require('./transporter');
+const { emailTransporter } = require('./emailTransporter');
 const { generateEmailVerificationToken } = require('../../utils/generateToken');
 const { BASE_URL } = require('../../config');
 
@@ -14,7 +14,7 @@ async function accountVerificationEmail(email, id) {
     '../../views/account.verification.email.ejs'
   );
   const data = await ejs.renderFile(templatePath, {
-    verifyLink: `${BASE_URL}/auth/verify_account?token=${email_verification_token}`,
+    verifyLink: `${BASE_URL}/auth/verify-account?token=${email_verification_token}`,
   });
 
   const mailOptions = {
@@ -23,7 +23,7 @@ async function accountVerificationEmail(email, id) {
     subject: 'Email Verification',
     html: data,
   };
-  await transporter.sendMail(mailOptions);
+  await emailTransporter.sendMail(mailOptions);
 }
 
 module.exports = accountVerificationEmail;

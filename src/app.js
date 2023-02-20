@@ -28,7 +28,7 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.use('/auth', authRouter);
-app.use('/order', authorizationMiddleware, orderRouter);
+app.use('/orders', authorizationMiddleware, orderRouter);
 app.use(emailRouter);
 
 module.exports = app;

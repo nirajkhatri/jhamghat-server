@@ -9,13 +9,13 @@ const {
 const authRouter = Router();
 
 authRouter.get('/logout', authorizationMiddleware, AuthController.logout);
-authRouter.get('/validate_token', AuthController.validateToken);
+authRouter.get('/validate-token', AuthController.validateToken);
 authRouter.get(
-  '/validate_session',
+  '/validate-session',
   authorizationMiddleware,
   AuthController.validateSession
 );
-authRouter.get('/verify_account', AuthController.verifyAccount);
+authRouter.get('/verify-account', AuthController.verifyAccount);
 
 authRouter.post(
   '/register',

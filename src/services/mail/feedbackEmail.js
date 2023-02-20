@@ -1,6 +1,6 @@
 const path = require('path');
 const ejs = require('ejs');
-const { transporter } = require('./transporter');
+const { emailTransporter } = require('./emailTransporter');
 
 async function feedbackEmail(email, message) {
   const templatePath = path.join(__dirname, '../../views/feedback.email.ejs');
@@ -14,7 +14,7 @@ async function feedbackEmail(email, message) {
     subject: 'User Feedback',
     html: data,
   };
-  await transporter.sendMail(mailOptions);
+  await emailTransporter.sendMail(mailOptions);
 }
 
 module.exports = feedbackEmail;

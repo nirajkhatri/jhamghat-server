@@ -12,10 +12,7 @@ const { EMAIL_VERIFICATION_SECRET, CLIENT_URL } = require('../config');
 const TokenModel = require('../models/token/token.model');
 
 async function validateSession(req, res) {
-  return res.status(200).json({
-    id: req.user.id,
-    email: req.user.email,
-  });
+  return res.status(200).json({ id: req.user.id, email: req.user.email });
 }
 
 async function register(req, res) {

@@ -5,7 +5,7 @@ const { EmailController } = require('../controllers');
 const emailRouter = Router();
 
 emailRouter.post(
-  '/verification_email',
+  '/verification-email',
   EmailController.sendAcountVerificationEmail
 );
 emailRouter.post('/feedback', EmailController.sendFeedbackEmail);
