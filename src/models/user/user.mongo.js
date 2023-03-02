@@ -26,7 +26,14 @@ const userRegistrationSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    address: {
+      shipping_address: {
+        type: Object,
+        default: null,
+      },
+    },
   },
+
   {
     collection: 'users',
   }

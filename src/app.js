@@ -7,6 +7,7 @@ const path = require('path');
 const { authorizationMiddleware } = require('./middleware/authMiddleware');
 const { ALLOWED_ORIGINS } = require('./config');
 const { orderRouter, emailRouter, authRouter } = require('./routes');
+const ProfileController = require('./controllers/profile.controller');
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(cookieParser());
 app.get('/dashboard', (req, res) => {
   return res.render('index');
 });
+app.get('/profile', authorizationMiddleware, ProfileController.getUser);
+app.post('/profile', authorizationMiddleware, ProfileController.updateUser);
 
 app.use('/auth', authRouter);
 app.use('/orders', authorizationMiddleware, orderRouter);

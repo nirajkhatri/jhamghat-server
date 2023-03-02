@@ -1,7 +1,12 @@
 const orders = require('./order.mongo');
 
 async function createNewOrder(data) {
-  return (await orders.create(data)) ?? false;
+  const totalOrders = await orders.countDocuments({});
+  const orderData = {
+    ...data,
+    orderId: totalOrders + 1,
+  };
+  return (await orders.create(orderData)) ?? false;
 }
 async function findOrders(email) {
   return await orders.find(email, {
